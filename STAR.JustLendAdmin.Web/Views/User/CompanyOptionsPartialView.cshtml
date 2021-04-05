@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Company>
+
+<option value="" disabled>Please select a company</option>
+@foreach(var c in Model)
+{
+    <option value="@c.Id">@c.General.Name</option>
+} 

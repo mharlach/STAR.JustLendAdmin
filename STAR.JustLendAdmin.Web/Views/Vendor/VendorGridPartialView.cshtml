@@ -1,0 +1,21 @@
+﻿@model List<Vendor>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Company Name</th>
+            <th>Login</th>
+            <th>Active</th>
+        </tr>
+    </thead>
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <tr>
+            <td><a asp-action="edit" asp-route-id="@Model[i].Id">@Model[i].Id</a></td>
+            <td>@Model[i].General.Name</td>
+            <td>@Model[i].SystemData.AdminId</td>
+            <td>@Model[i].SystemData.Active</td>
+        </tr>
+    }
+</table>

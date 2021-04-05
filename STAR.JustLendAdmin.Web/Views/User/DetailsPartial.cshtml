@@ -1,0 +1,99 @@
+﻿@model STAR.JustLendAdmin.Web.Models.User
+
+<div class="col-6">
+    <input asp-for="Id" type="hidden" class="form-control" />
+    <h3>General Configuration</h3>
+    <div>
+        <h5>User Information</h5>
+        <div class="form-group">
+            <label asp-for="Company" class="control-label"></label>
+            <input asp-for="Company" class="form-control" />
+            <span asp-validation-for="Company" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="FirstName" class="control-label"></label>
+            <input asp-for="FirstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LastName" class="control-label"></label>
+            <input asp-for="LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PhoneNumber" class="control-label"></label>
+            <input asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="TeamCode" class="control-label"></label>
+            <input asp-for="TeamCode" class="form-control" />
+            <span asp-validation-for="TeamCode" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EncompassId" class="control-label"></label>
+            <input asp-for="EncompassId" class="form-control" />
+            <span asp-validation-for="EncompassId" class="text-danger"></span>
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="Agent" /> @Html.DisplayNameFor(model => model.Agent)
+            </label>
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="AgentTeamManager" /> @Html.DisplayNameFor(model => model.AgentTeamManager)
+            </label>
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="Processor" /> @Html.DisplayNameFor(model => model.Processor)
+            </label>
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="ProcessorTeamLead" /> @Html.DisplayNameFor(model => model.ProcessorTeamLead)
+            </label>
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="ProcessorTeamManager" /> @Html.DisplayNameFor(model => model.ProcessorTeamManager)
+            </label>
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="Underwriter" /> @Html.DisplayNameFor(model => model.Underwriter)
+            </label>
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="Funder" /> @Html.DisplayNameFor(model => model.Funder)
+            </label>
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="ExecutiveManager" /> @Html.DisplayNameFor(model => model.ExecutiveManager)
+            </label>
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="LoanSetUp" /> @Html.DisplayNameFor(model => model.LoanSetUp)
+            </label>
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="KyProcessor" /> @Html.DisplayNameFor(model => model.KyProcessor)
+            </label>
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
+            </label>
+        </div>
+    </div>
+</div>
