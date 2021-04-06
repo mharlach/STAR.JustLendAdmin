@@ -8,7 +8,8 @@ namespace STAR.JustLendAdmin.Web.Models
         public string Id { get; set; }
 
         [Required]
-        public string Company { get; set; }
+        [Display(Name ="Company")]
+        public string CompanyId { get; set; }
 
         [Required]
         [Display(Name ="First Name")]
@@ -63,5 +64,14 @@ namespace STAR.JustLendAdmin.Web.Models
         public bool KyProcessor { get; set; }
 
         public bool Active { get; set; } = true;
+        public bool GlobalManager { get;  set; }
+        public bool AgentProcessor { get; set; }
+        public bool TitleVendorOverride { get; set; }
+        public bool ProcessorAssignmentOverride { get; set; }
+
+        public string DetermineRole()
+        {
+            return "TODO";
+        }
     }
 }

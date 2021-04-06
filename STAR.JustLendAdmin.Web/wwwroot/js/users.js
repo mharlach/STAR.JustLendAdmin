@@ -1,14 +1,26 @@
 ﻿
+function defer(method) {
+    if (window.jQuery) {
+        method();
+    } else {
+        setTimeout(function () { defer(method) }, 50);
+    }
+}
+
+window.onload = function () {
+    defer(loadCompanies);
+}
+
 function loadCompanies() {
-    if ($("#companyComboBox option").length <= 1) {
+    if ($(".companyComboBox option").length <= 1) {
         console.log("Loading companies...");
         $('.btn').attr('disabled');
         $.ajax({
             type: 'get',
-            url: 'user/companyfilteroptions',
+            url: '/user/companyfilteroptions',
             success: function (payload, status, jqXhr) {
-                $('#companyComboBox').empty();
-                $('#companyComboBox').html(payload);
+                $('.companyComboBox').empty();
+                $('.companyComboBox').html(payload);
             },
             error: function (data, status, jqXhr) {
                 alert(status);
@@ -18,7 +30,13 @@ function loadCompanies() {
             }
         });
     }
+}
 
+function getUsersFromCompany() {
+    var request = {
+        CompanyId: $('#companyComboBox').val()
+    };
+    getUsersPartialView(request, "/user/GetAllCompanyUsersPartialView");
 }
 
 function getUsers() {
@@ -36,10 +54,14 @@ function getUsers() {
         LoanSetup: $("#loanSetupCheckbox").is(":checked"),
         ExecutiveManagers: $("#executiveManagersCheckbox").is(":checked")
     };
+    getUsersPartialView(request,"/user/GetFilteredUsersPartialView");
+}
+
+function getUsersPartialView(request, url) {
     $('.btn').attr('disabled');
     $.ajax({
         type: 'post',
-        url: 'user/UsersGridPartialView',
+        url: url,
         data: { request: request },
         success: function (payload, staus, jqXhr) {
             $("#gridUsersPartial").empty();

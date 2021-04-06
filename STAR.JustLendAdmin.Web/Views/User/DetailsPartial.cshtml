@@ -2,13 +2,15 @@
 
 <div class="col-6">
     <input asp-for="Id" type="hidden" class="form-control" />
+
     <h3>General Configuration</h3>
     <div>
         <h5>User Information</h5>
         <div class="form-group">
-            <label asp-for="Company" class="control-label"></label>
-            <input asp-for="Company" class="form-control" />
-            <span asp-validation-for="Company" class="text-danger"></span>
+            <label asp-for="CompanyId" class="control-label"></label>
+            <select class="form-control col-md-6 companyComboBox" asp-for="CompanyId">
+            </select>
+            <span asp-validation-for="CompanyId" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label asp-for="FirstName" class="control-label"></label>
@@ -96,4 +98,8 @@
             </label>
         </div>
     </div>
+    <input asp-for="GlobalManager" type="hidden" />
+    <input asp-for="AgentProcessor" type="hidden" />
+    <input asp-for="TitleVendorOverride" type="hidden" />
+    <input asp-for="ProcessorAssignmentOverride" type="hidden" />
 </div>

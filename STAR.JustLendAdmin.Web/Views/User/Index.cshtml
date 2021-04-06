@@ -5,10 +5,10 @@
 <div>
     <div class="row">
         <label for="companyComboBox" class="col-md-2 col-form-label">Display users for:</label>
-        <select class="form-select col-md-6" id="companyComboBox" onclick="loadCompanies()">
+        <select class="form-select col-md-6 companyComboBox" id="companyComboBox">
             <option value="" disabled>Please select a company</option>
         </select>
-        <button class="btn btn-primary" type="button" id="viewUsersButton" onclick="getUsers()">View Users</button>
+        <button class="btn btn-primary" type="button" id="viewUsersButton" onclick="getUsersFromCompany()">View Users</button>
     </div>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="activeCheckbox" checked />

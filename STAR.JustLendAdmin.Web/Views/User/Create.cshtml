@@ -1,9 +1,9 @@
-﻿@model STAR.JustLendAdmin.Web.Models.UserViewModel 
+﻿@model STAR.JustLendAdmin.Web.Models.UserViewModel
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Add User";
 }
 
-<h1>Add Company</h1>
+<h1>Add User</h1>
 <hr />
 <partial name="StatusMessagePartialView" for="Response" />
 <form asp-action="Create">
@@ -14,4 +14,6 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/users.js" asp-append-version="false"></script>
 }
+

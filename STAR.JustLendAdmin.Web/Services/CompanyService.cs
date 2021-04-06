@@ -1,4 +1,5 @@
 ﻿#nullable enable
+using Microsoft.Extensions.Configuration;
 using STAR.JustLendAdmin.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,6 @@ namespace STAR.JustLendAdmin.Web.Services
         Task<Company?> GetAsync(string id);
         Task<UpsertModelResponse<Company>> UpsertAsync(Company company);
     }
-
 
     public class FakeCompanyService : ICompanyService
     {

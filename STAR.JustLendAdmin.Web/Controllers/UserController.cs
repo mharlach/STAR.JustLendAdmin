@@ -114,7 +114,14 @@ namespace STAR.JustLendAdmin.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UsersGridPartialView(UserSearchRequest request)
+        public async Task<IActionResult> GetAllCompanyUsersPartialView(UserSearchRequest request)
+        {
+            var users = await userService.GetAsync(request);
+            return PartialView(users.ToList());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetFilteredUsersPartialView(UserSearchFilterRequest request)
         {
             var users = await userService.GetAsync(request);
             return PartialView(users.ToList());
