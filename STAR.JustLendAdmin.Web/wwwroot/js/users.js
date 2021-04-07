@@ -9,6 +9,11 @@ function defer(method) {
 
 window.onload = function () {
     defer(loadCompanies);
+    defer(loadTooltips);
+}
+
+function loadTooltips() {
+    $('[data-toggle="tooltip"]').tooltip();
 }
 
 function loadCompanies() {

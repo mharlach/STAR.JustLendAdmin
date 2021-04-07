@@ -38,18 +38,19 @@ namespace STAR.JustLendAdmin.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(User user)
+        public async Task<IActionResult> Create(UserViewModel viewModel)
         {
             try
             {
-                var response = await userService.UpsertAsync(user);
+                var response = await userService.UpsertAsync(viewModel.User);
                 if (response.Success)
                 {
                     return RedirectToAction(nameof(Index));
                 }
                 else
                 {
-                    var viewModel = new UserViewModel { User = response.Model, Response = new ResponseCore { Message = response.Message, Success = response.Success } };
+                    viewModel.User = response.Model;
+                    viewModel.Response = new ResponseCore { Message = response.Message, Success = response.Success };
                     return View(viewModel);
                 }
             }
@@ -84,18 +85,19 @@ namespace STAR.JustLendAdmin.Web.Controllers
         // POST: CompanyController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, User model)
+        public async Task<IActionResult> Edit(string id, UserViewModel viewModel)
         {
             try
             {
-                var response = await userService.UpsertAsync(model);
+                var response = await userService.UpsertAsync(viewModel.User);
                 if (response.Success)
                 {
                     return RedirectToAction(nameof(Index));
                 }
                 else
                 {
-                    var viewModel = new UserViewModel { User = response.Model, Response = new ResponseCore { Message = response.Message, Success = response.Success } };
+                    viewModel.User = response.Model;
+                    viewModel.Response = new ResponseCore { Message = response.Message, Success = response.Success } ;
                     return View(viewModel);
                 }
             }

@@ -6,102 +6,141 @@
     <h3>General Configuration</h3>
     <div>
         <h5>User Information</h5>
-        <div class="form-group">
-            <label asp-for="CompanyId" class="control-label"></label>
-            <select class="form-control col-md-6 companyComboBox" asp-for="CompanyId">
-            </select>
+        <div class="form-group required">
+            <span data-toggle="tooltip" data-placement="right" data-html="true" title="<b>Company</b><br/><br/><b>Greenlight Financial Services</b> is the <b>Default Company</b> and should always be used except for special cases.">
+                <select class="form-control companyComboBox" asp-for="CompanyId">
+                </select>
+            </span>
             <span asp-validation-for="CompanyId" class="text-danger"></span>
         </div>
-        <div class="form-group">
+        <div class="form-group required">
             <label asp-for="FirstName" class="control-label"></label>
-            <input asp-for="FirstName" class="form-control" />
+            <span data-toggle="tooltip" data-placement="right" data-html="true" title="<b>First Name</b><br/><br />Please verify correct spelling. This data can be found in NSM OrgChart.">
+                <input asp-for="FirstName" class="form-control" />
+            </span>
             <span asp-validation-for="FirstName" class="text-danger"></span>
         </div>
-        <div class="form-group">
+        <div class="form-group required">
             <label asp-for="LastName" class="control-label"></label>
-            <input asp-for="LastName" class="form-control" />
+            <span data-toggle="tooltip" data-placement="right" data-html="true" title="<b>Last Name</b><br/><br />Please verify correct spelling. This data can be found in NSM OrgChart.">
+                <input asp-for="LastName" class="form-control" />
+            </span>
             <span asp-validation-for="LastName" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <label asp-for="Email" class="control-label"></label>
+    </div>
+    <div class="form-group required">
+        <label asp-for="Email" class="control-label"></label>
+        <span data-toggle="tooltip" data-placement="right" data-html="true" title="<b>Email Address</b><br/><br />Must be a legitimate Email Address; @@ and extention; .com, .net, .org.">
             <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="PhoneNumber" class="control-label"></label>
+        </span>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group required">
+        <label asp-for="PhoneNumber" class="control-label"></label>
+        <span data-toggle="tooltip" data-placement="right" data-html="true" title="<b>Phone Number</b><br/><br />Must be a legitimate GL or NSM desktop phone number. <b>Do not use placeholder data such as 1111111111</b>.<br/><br/>This number is used by FedEx to create shipping labels and will fail using placeholder data.">
             <input asp-for="PhoneNumber" class="form-control" />
-            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="TeamCode" class="control-label"></label>
+        </span>
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group required">
+        <label asp-for="TeamCode" class="control-label"></label>
+        <span data-toggle="tooltip" data-placement="right" data-html="true" title="<b>Team Code</b><br/><br />Use <b>Team Code = '000'</b> for following roles <b>Loan Consultant</b>, <b>Processor</b>, <b>Agent Team Manager</b>, or <b>Processor Team Manager</b>">
             <input asp-for="TeamCode" class="form-control" />
-            <span asp-validation-for="TeamCode" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="EncompassId" class="control-label"></label>
+        </span>
+        <span asp-validation-for="TeamCode" class="text-danger"></span>
+    </div>
+    <div class="form-group required">
+        <label asp-for="EncompassId" class="control-label"></label>
+        <span data-toggle="tooltip" data-placement="right" data-html="true" title="<b>Encompass Id</b><br/><br />The Encompass Id is unique to each user for life, there should never be a duplicate.<br/><br/>If you enter an Encompass Id that is validated as 'Already Exists', verify the user's Encompass Id in Encompass">
             <input asp-for="EncompassId" class="form-control" />
-            <span asp-validation-for="EncompassId" class="text-danger"></span>
-        </div>
-        <div class="form-group form-check">
+        </span>
+        <span asp-validation-for="EncompassId" class="text-danger"></span>
+    </div>
+    <div class="form-group form-check">
+        <span data-toggle="tooltip" data-placement="right" data-html="true" title="<b>Loan Consultant</b>: aka Agent, Loan Agent, Sales Agent, Mortgate Professional<br/><br /> Allows access to GLS applications and data and are always associated with a Team so they <b>cannot have a TeamCode value of 000</b>.">
             <label class="form-check-label">
                 <input class="form-check-input" asp-for="Agent" /> @Html.DisplayNameFor(model => model.Agent)
             </label>
-        </div>
-        <div class="form-group form-check">
+        </span>
+    </div>
+    <div class="form-group form-check">
+        <span data-toggle="tooltip" data-placement="right" data-html="true" title="<b>Agent Team Manager</b>: aka Sales Manager<br /><br />Allows access to GLS applications and data and are always associated with a Team so they <b>cannot have a TeamCode value of 000</b>.">
             <label class="form-check-label">
                 <input class="form-check-input" asp-for="AgentTeamManager" /> @Html.DisplayNameFor(model => model.AgentTeamManager)
             </label>
-        </div>
-        <div class="form-group form-check">
+        </span>
+    </div>
+    <div class="form-group form-check">
+        <span data-toggle="tooltip" data-placement="right" data-html="true" title="<b>Processor</b>: aka Loan Processor, Closing Coordinator <br /><br />Allows access to GLS applications and data and are always associated with a Team so they <b>cannot have a TeamCode value of 000</b>.">
             <label class="form-check-label">
                 <input class="form-check-input" asp-for="Processor" /> @Html.DisplayNameFor(model => model.Processor)
             </label>
-        </div>
-        <div class="form-group form-check">
+        </span>
+    </div>
+    <div class="form-group form-check">
+        <span data-toggle="tooltip" data-placement="right" data-html="true" title="<b>Process Team Lead</b>: Allows access to GLS applications and data and are always associated with a Team so they <b>cannot have a TeamCode value of 000</b>.">
+            
             <label class="form-check-label">
                 <input class="form-check-input" asp-for="ProcessorTeamLead" /> @Html.DisplayNameFor(model => model.ProcessorTeamLead)
             </label>
-        </div>
-        <div class="form-group form-check">
+        </span>
+    </div>
+    <div class="form-group form-check">
+        <span data-toggle="tooltip" data-placement="right" data-html="true" title="<b>Processor Team Manager</b>: Allows access to GLS applications and data and are always associated with a Team so they <b>cannot have a TeamCode value of 000</b>">
             <label class="form-check-label">
                 <input class="form-check-input" asp-for="ProcessorTeamManager" /> @Html.DisplayNameFor(model => model.ProcessorTeamManager)
             </label>
-        </div>
-        <div class="form-group form-check">
+        </span>
+    </div>
+    <div class="form-group form-check">
+        <span data-toggle="tooltip" data-placement="right" data-html="true" title="<b>Underwriter</b>: Allows access to GLS applications and data accept in GL Reports where a user is required to have the specific Team Code entry associated to a legitimate team.">
             <label class="form-check-label">
                 <input class="form-check-input" asp-for="Underwriter" /> @Html.DisplayNameFor(model => model.Underwriter)
             </label>
-        </div>
-        <div class="form-group form-check">
+        </span>
+    </div>
+    <div class="form-group form-check">
+        <span data-toggle="tooltip" data-placement="right" data-html="true" title="<b>Funder</b>: Includes Funding Managers<br /><br />Allows access to GLS applications and data accept in GL Reports where a user is required to have the specific Team Code entry associated to a legitimate team.">
             <label class="form-check-label">
                 <input class="form-check-input" asp-for="Funder" /> @Html.DisplayNameFor(model => model.Funder)
             </label>
-        </div>
-        <div class="form-group form-check">
+        </span>
+    </div>
+    <div class="form-group form-check">
+        <span data-toggle="tooltip" data-placement="right" data-html="true" title="<b>Executive Manager</b>: VPs, AVPs, any Manager above an Agent or Processor Team Management level.<br /><br />Allows access to GLS applications and data accept in GL Reports where a user is required to have the specific Team Code entry associated to a legitimate team.">
             <label class="form-check-label">
                 <input class="form-check-input" asp-for="ExecutiveManager" /> @Html.DisplayNameFor(model => model.ExecutiveManager)
             </label>
-        </div>
-        <div class="form-group form-check">
+        </span>
+    </div>
+    <div class="form-group form-check">
+        <span data-toggle="tooltip" data-placement="right" data-html="true" title="<b>Loan Setup</b>: Use for Non-Managers<br />
+                                <br />
+                                Allows access to GLS applications and data accept in GL Reports where a user is required to have 
+                                the specific Team Code entry associated to a legitimate team.">
             <label class="form-check-label">
                 <input class="form-check-input" asp-for="LoanSetUp" /> @Html.DisplayNameFor(model => model.LoanSetUp)
             </label>
-        </div>
-        <div class="form-group form-check">
+        </span>
+    </div>
+    <div class="form-group form-check">
+        <span data-toggle="tooltip" data-placement="right" data-html="true">
             <label class="form-check-label">
                 <input class="form-check-input" asp-for="KyProcessor" /> @Html.DisplayNameFor(model => model.KyProcessor)
             </label>
-        </div>
-        <div class="form-group form-check">
+        </span>
+    </div>
+    <div class="form-group form-check">
+        <span data-toggle="tooltip" data-placement="right" data-html="true">
             <label class="form-check-label">
                 <input class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
             </label>
-        </div>
+        </span>
     </div>
-    <input asp-for="GlobalManager" type="hidden" />
-    <input asp-for="AgentProcessor" type="hidden" />
-    <input asp-for="TitleVendorOverride" type="hidden" />
-    <input asp-for="ProcessorAssignmentOverride" type="hidden" />
-    <input asp-for="TeamManager" type="hidden" />
-    <input asp-for="TeamLead" type="hidden" />
 </div>
+<input asp-for="GlobalManager" type="hidden" />
+<input asp-for="AgentProcessor" type="hidden" />
+<input asp-for="TitleVendorOverride" type="hidden" />
+<input asp-for="ProcessorAssignmentOverride" type="hidden" />
+<input asp-for="TeamManager" type="hidden" />
+<input asp-for="TeamLead" type="hidden" />
