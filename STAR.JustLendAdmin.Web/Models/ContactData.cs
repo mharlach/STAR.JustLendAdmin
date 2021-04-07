@@ -7,16 +7,16 @@ namespace STAR.JustLendAdmin.Web.Models
     public class ContactData
     {
         [Display(Name = "First Name")]
-        public string FirstName { get; set; } = string.Empty;
+        public string? FirstName { get; set; }
 
         [Display(Name = "Last Name")]
-        public string LastName { get; set; } = string.Empty;
+        public string? LastName { get; set; } 
 
         [DataType(DataType.PhoneNumber)]
-        public string Phone { get; set; } = string.Empty;
+        public string? Phone { get; set; }
 
         [Display(Name = "Ext")]
-        public string PhoneExtension { get; set; } = string.Empty;
+        public string? PhoneExtension { get; set; }
     }
 
 }

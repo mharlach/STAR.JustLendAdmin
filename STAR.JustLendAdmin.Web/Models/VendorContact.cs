@@ -7,10 +7,13 @@ namespace STAR.JustLendAdmin.Web.Models
     {
         [Required]
         public string Name { get; set; } = string.Empty;
+
         [DataType(DataType.PhoneNumber)]
-        public string Phone { get; set; } = string.Empty;
-        public string PhoneExtention { get; set; } = string.Empty;
+        public string? Phone { get; set; } 
+
+        public string? PhoneExtention { get; set; }
+
         [DataType(DataType.EmailAddress)]
-        public string Email { get; set; } = string.Empty;
+        public string? Email { get; set; } 
     }
 }

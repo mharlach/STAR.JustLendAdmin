@@ -37,18 +37,23 @@ namespace STAR.JustLendAdmin.Web.Controllers
         // POST: CompanyController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Company company)
+        public async Task<IActionResult> Create(CompanyViewModel viewModel)
         {
             try
             {
-                var response = await service.UpsertAsync(company);
+                var response = await service.UpsertAsync(viewModel.Company);
                 if(response.Success)
                 {
                     return RedirectToAction(nameof(Index));
                 }
                 else
                 {
-                    var viewModel = new CompanyViewModel { Company = response.Model, Response = new ResponseCore { Message = response.Message, Success = response.Success } };
+                    viewModel.Company = response.Model;
+                    viewModel.Response = new ResponseCore{
+                        Success = response.Success,
+                        Message = response.Message,
+                    };
+                    
                     return View(viewModel);
                 }
             }
@@ -68,6 +73,7 @@ namespace STAR.JustLendAdmin.Web.Controllers
                 if(company != null)
                 {
                     return View(new CompanyViewModel { Company = company });
+                    // return View(company);
                 }
                 else
                 {
@@ -84,18 +90,23 @@ namespace STAR.JustLendAdmin.Web.Controllers
         // POST: CompanyController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, Company model)
+        public async Task<IActionResult> Edit(string id, CompanyViewModel viewModel)
         {
             try
             {
-                var response = await service.UpsertAsync(model);
+                var response = await service.UpsertAsync(viewModel.Company);
                 if (response.Success)
                 {
                     return RedirectToAction(nameof(Index));
                 }
                 else
                 {
-                    var viewModel = new CompanyViewModel { Company = response.Model, Response = new ResponseCore { Message = response.Message, Success = response.Success } };
+                    viewModel.Company = response.Model;
+                    viewModel.Response = new ResponseCore{
+                        Success = response.Success,
+                        Message = response.Message,
+                    };
+                    
                     return View(viewModel);
                 }
             }

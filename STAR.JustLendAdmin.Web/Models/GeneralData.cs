@@ -14,7 +14,7 @@ namespace STAR.JustLendAdmin.Web.Models
         public string Address1 { get; set; } = string.Empty;
 
         [Display(Name = "Address 2")]
-        public string Address2 { get; set; } = string.Empty;
+        public string? Address2 { get; set; } 
 
         [Required]
         public string City { get; set; } = string.Empty;
@@ -27,11 +27,11 @@ namespace STAR.JustLendAdmin.Web.Models
 
         [Display(Name = "Company Phone Number")]
         [DataType(DataType.PhoneNumber)]
-        public string PhoneNumber { get; set; } = string.Empty;
+        public string? PhoneNumber { get; set; } 
 
         [Display(Name = "Company Fax Number")]
         [DataType(DataType.PhoneNumber)]
-        public string FaxNumber { get; set; } = string.Empty;
+        public string? FaxNumber { get; set; } 
     }
 
 }

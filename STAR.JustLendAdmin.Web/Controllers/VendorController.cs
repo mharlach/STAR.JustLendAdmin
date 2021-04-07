@@ -36,18 +36,19 @@ namespace STAR.JustLendAdmin.Web.Controllers
         // POST: Vendor/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Vendor vendor)
+        public async Task<IActionResult> Create(VendorViewModel viewModel)
         {
             try
             {
-                var response = await service.UpsertAsync(vendor);
+                var response = await service.UpsertAsync(viewModel.Vendor);
                 if (response.Success)
                 {
                     return RedirectToAction(nameof(Index));
                 }
                 else
                 {
-                    var viewModel = new VendorViewModel { Vendor = response.Model, Response = new ResponseCore { Message = response.Message, Success = response.Success } };
+                    viewModel.Vendor = response.Model;
+                    viewModel.Response  = new ResponseCore { Message = response.Message, Success = response.Success };
                     return View(viewModel);
                 }
             }
@@ -83,18 +84,19 @@ namespace STAR.JustLendAdmin.Web.Controllers
         // POST: Vendor/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, Vendor model)
+        public async Task<IActionResult> Edit(string id, VendorViewModel viewModel)
         {
             try
             {
-                var response = await service.UpsertAsync(model);
+                var response = await service.UpsertAsync(viewModel.Vendor);
                 if (response.Success)
                 {
                     return RedirectToAction(nameof(Index));
                 }
                 else
                 {
-                    var viewModel = new VendorViewModel { Vendor = response.Model, Response = new ResponseCore { Message = response.Message, Success = response.Success } };
+                    viewModel.Vendor = response.Model;
+                    viewModel.Response  = new ResponseCore { Message = response.Message, Success = response.Success };
                     return View(viewModel);
                 }
             }

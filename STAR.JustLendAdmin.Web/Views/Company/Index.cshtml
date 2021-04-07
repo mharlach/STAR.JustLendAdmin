@@ -22,9 +22,17 @@
                 <tr>
                     <td><a asp-action="edit" asp-route-id="@Model[i].Id">@Model[i].Id</a></td>
                     <td>@Model[i].General.Name</td>
-                    <td>@Model[i].System.Active</td>
-                </tr>
+                    @* <td>@Model[i].System.Active</td> *@
+                    @if (Model[i].System.Active)
+                    {
+                        <td>Yes</td>
+                    }
+                    else
+                    {
+                        <td>No</td>
+                    }
+                    </tr>
             }
         </table>
     </div>
-</div> 
+    </div> 
