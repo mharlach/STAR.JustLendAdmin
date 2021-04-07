@@ -5,13 +5,14 @@
 
 <h1>Add Company</h1>
 <hr />
-<partial name="StatusMessagePartialView" for="Response" />
-<form asp-action="Create">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <partial name="DetailsPartial.cshtml" for="Vendor" />
-    <button type="submit" class="btn btn-primary">Add Vendor</button>
-</form>
-
+<div class="col-11">
+    <partial name="StatusMessagePartialView" for="Response" />
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <partial name="DetailsPartial.cshtml" for="Vendor" />
+        <button type="submit" class="btn btn-primary">Add Vendor</button>
+    </form>
+</div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

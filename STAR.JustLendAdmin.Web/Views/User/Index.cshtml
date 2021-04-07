@@ -1,63 +1,105 @@
 ﻿@{
     ViewData["Title"] = "Users";
 }
-
-<div>
-    <div class="row">
-        <label for="companyComboBox" class="col-md-2 col-form-label">Display users for:</label>
-        <select class="form-select col-md-6 companyComboBox" id="companyComboBox">
+<h1>Users</h1>
+<div class="col-11">
+    <div class="form-group">
+        <label for="companyComboBox">Display users for</label>
+        <select class="form-control col-6 companyComboBox" id="companyComboBox">
             <option value="" disabled>Please select a company</option>
         </select>
         <button class="btn btn-primary" type="button" id="viewUsersButton" onclick="getUsersFromCompany()">View Users</button>
     </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="activeCheckbox" checked />
-        <label for="activeCheckbox" class="form-check-label">Active</label>
+    <div>
+        <div class="row">
+            <div class="col">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="activeCheckbox" checked />
+                    <label for="activeCheckbox" class="form-check-label">Active</label>
+                </div>
+
+            </div>
+            <div class="col">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="agentsCheckbox" />
+                    <label for="agentsCheckbox" class="form-check-label">Agents</label>
+                </div>
+
+
+            </div>
+            <div class="col">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="processorsCheckbox" />
+                    <label for="processorsCheckbox" class="form-check-label">Processors</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="teamLeadsCheckbox" />
+                    <label for="teamLeadsCheckbox" class="form-check-label">Team Leads</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="teamManagersCheckbox" />
+                    <label for="teamManagersCheckbox" class="form-check-label">Team Managers</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="supressTeamCheckbox" />
+                    <label for="supressTeamCheckbox" class="form-check-label">Supress Team 000</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="underwritersCheckbox" />
+                    <label for="underwritersCheckbox" class="form-check-label">Underwriters</label>
+                </div>
+
+            </div>
+            <div class="col">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="fundersCheckbox" />
+                    <label for="fundersCheckbox" class="form-check-label">Funders</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="loanSetupCheckbox" />
+                    <label for="loanSetupCheckbox" class="form-check-label">Loan Setup</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="executiveManagersCheckbox" />
+                    <label for="executiveManagersCheckbox" class="form-check-label">Executive Managers</label>
+                </div>
+            </div>
+            <div class="col">
+
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
     </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="agentsCheckbox" />
-        <label for="agentsCheckbox" class="form-check-label">Agents</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="processorsCheckbox" />
-        <label for="processorsCheckbox" class="form-check-label">Processors</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="teamLeadsCheckbox" />
-        <label for="teamLeadsCheckbox" class="form-check-label">Team Leads</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="teamManagersCheckbox" />
-        <label for="teamManagersCheckbox" class="form-check-label">Team Managers</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="supressTeamCheckbox" />
-        <label for="supressTeamCheckbox" class="form-check-label">Supress Team 000</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="underwritersCheckbox" />
-        <label for="underwritersCheckbox" class="form-check-label">Underwriters</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="fundersCheckbox" />
-        <label for="fundersCheckbox" class="form-check-label">Funders</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="loanSetupCheckbox" />
-        <label for="loanSetupCheckbox" class="form-check-label">Loan Setup</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="executiveManagersCheckbox" />
-        <label for="executiveManagersCheckbox" class="form-check-label">Executive Managers</label>
-    </div>
-    <div class="row">
-        <label for="filterTextbox" class="col-md-2 col-form-label">Filter:</label>
-        <input class="form-text col-md-6" id="filterTextbox" />
+    <div class="form-group">
+        <label for="filterTextbox">Filter</label>
+        <input class="form-control col-md-6" id="filterTextbox" />
         <button class="btn btn-primary" type="button" id="filterUsersButton" onclick="getUsers()">View/Filter GLS Users</button>
     </div>
+    <p></p>
+    <a class="btn btn-primary" role="button" asp-action="Create">New User</a>
 </div>
 
-<a class="btn btn-primary" role="button" asp-action="Create">New User</a>
 
 <div id="gridUsersPartial"></div>
 

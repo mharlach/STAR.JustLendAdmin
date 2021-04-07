@@ -31,7 +31,7 @@ namespace STAR.JustLendAdmin.Web.Controllers
             return View();
         }
 
-       public IActionResult Create()
+        public IActionResult Create()
         {
             return View(new UserViewModel());
         }
@@ -43,7 +43,7 @@ namespace STAR.JustLendAdmin.Web.Controllers
             try
             {
                 var response = await userService.UpsertAsync(user);
-                if(response.Success)
+                if (response.Success)
                 {
                     return RedirectToAction(nameof(Index));
                 }
@@ -53,7 +53,7 @@ namespace STAR.JustLendAdmin.Web.Controllers
                     return View(viewModel);
                 }
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
                 log.LogError(ex, "Error creating user");
                 return View("Error", ex);
@@ -117,14 +117,14 @@ namespace STAR.JustLendAdmin.Web.Controllers
         public async Task<IActionResult> GetAllCompanyUsersPartialView(UserSearchRequest request)
         {
             var users = await userService.GetAsync(request);
-            return PartialView(users.ToList());
+            return PartialView("UsersGridPartialView", users.ToList());
         }
 
         [HttpPost]
         public async Task<IActionResult> GetFilteredUsersPartialView(UserSearchFilterRequest request)
         {
             var users = await userService.GetAsync(request);
-            return PartialView(users.ToList());
+            return PartialView("UsersGridPartialView", users.ToList());
         }
     }
 }

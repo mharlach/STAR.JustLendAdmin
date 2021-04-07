@@ -85,7 +85,7 @@ namespace STAR.JustLendAdmin.Web.Services
 
             if (filterRequest.LoanSetup)
                 cmd.CommandText += " AND LoanSetup=1 ";
-            
+
             cmd.CommandText += " AND ISNULL(Locked,'')='0' AND CompanyId=1092";
 
             cmd.Parameters.Add(BuildParameter("@Active", filterRequest.Active));
@@ -165,6 +165,8 @@ namespace STAR.JustLendAdmin.Web.Services
                 TitleVendorOverride = (bool)rdr["TitleVendorOverride"],
                 ProcessorAssignmentOverride = (bool)rdr["ProcessorAssignmentOverride"],
                 KyProcessor = rdr["KY"] as bool? ?? false,
+                TeamManager = (bool)rdr["TeamManager"],
+                TeamLead = rdr["TeamLead"] as bool? ?? false,
             };
             var loanSetup = rdr["LoanSetup"] as string;
             if (loanSetup == "1")
@@ -172,14 +174,12 @@ namespace STAR.JustLendAdmin.Web.Services
                 user.LoanSetUp = true;
             }
 
-            var teamManager = (bool)rdr["TeamManager"];
-
-            if (user.Agent && teamManager && user.ProcessorAssignmentOverride)
+            if (user.Agent && user.TeamManager && user.ProcessorAssignmentOverride)
             {
                 user.Agent = false;
                 user.AgentTeamManager = true;
             }
-            else if (teamManager && user.Processor && user.ProcessorAssignmentOverride)
+            else if (user.TeamManager && user.Processor && user.ProcessorAssignmentOverride)
             {
                 user.Processor = false;
                 user.ProcessorTeamManager = true;

@@ -5,13 +5,14 @@
 
 <h1>Edit User</h1>
 <hr />
-<partial name="StatusMessagePartialView" for="Response" />
-<form asp-action="Edit">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <partial name="DetailsPartial.cshtml" for="User" />
-    <button type="submit" class="btn btn-primary">Update User</button>
-</form>
-
+<div class="col-11">
+    <partial name="StatusMessagePartialView" for="Response" />
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <partial name="DetailsPartial.cshtml" for="User" />
+        <button type="submit" class="btn btn-primary">Update User</button>
+    </form>
+</div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script src="~/js/users.js" asp-append-version="false"></script>
