@@ -10,7 +10,7 @@ namespace STAR.JustLendAdmin.Web.Models
 {
     public class Company
     {
-        public string Id { get; set; } = string.Empty;
+        public int Id { get; set; }
 
         public GeneralData General { get; set; } = new GeneralData();
         public ContactData Contact { get; set; } = new ContactData();

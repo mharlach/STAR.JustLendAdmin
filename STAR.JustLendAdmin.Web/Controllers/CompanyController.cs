@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using STAR.JustLendAdmin.Web.Models;
 using STAR.JustLendAdmin.Web.Services;
 using System;
@@ -41,13 +42,17 @@ namespace STAR.JustLendAdmin.Web.Controllers
         {
             try
             {
+                log.LogInformation($"New company creation requested [{viewModel.Company.General.Name}]");
+                
                 var response = await service.UpsertAsync(viewModel.Company);
                 if(response.Success)
                 {
+                    log.LogInformation($"New company created [{viewModel.Company.General.Name}]");
                     return RedirectToAction(nameof(Index));
                 }
                 else
                 {
+                    log.LogWarning($"New company could not be created [{viewModel.Company.General.Name}] [{response.Message}]");
                     viewModel.Company = response.Model;
                     viewModel.Response = new ResponseCore{
                         Success = response.Success,
@@ -94,13 +99,17 @@ namespace STAR.JustLendAdmin.Web.Controllers
         {
             try
             {
+                log.LogInformation($"Company edit requested [{viewModel.Company.Id}]");
+
                 var response = await service.UpsertAsync(viewModel.Company);
                 if (response.Success)
                 {
+                    log.LogInformation($"Company edit completed [{viewModel.Company.Id}]");
                     return RedirectToAction(nameof(Index));
                 }
                 else
                 {
+                    log.LogWarning($"Company edit could not be completed [{viewModel.Company.Id}] - [{response.Message}]");
                     viewModel.Company = response.Model;
                     viewModel.Response = new ResponseCore{
                         Success = response.Success,

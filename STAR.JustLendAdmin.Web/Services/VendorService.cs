@@ -1,4 +1,5 @@
 ﻿#nullable enable
+using Microsoft.Extensions.Logging;
 using STAR.JustLendAdmin.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,59 @@ namespace STAR.JustLendAdmin.Web.Services
     public interface IVendorService
     {
         Task<IEnumerable<Vendor>> GetAsync(GetVendorRequest request);
-        Task<Vendor?> GetAsync(string id);
+        //Task<Vendor?> GetAsync(string id);
         Task<UpsertModelResponse<Vendor>> UpsertAsync(Vendor vendor);
+    }
+
+    public interface IDetailedVendorService
+    {
+        VendorType GetVendorType();
+        Task<IEnumerable<Vendor>> GetAsync();
+        Task<Vendor?> GetAsync(int id);
+        Task<UpsertModelResponse<Vendor>> UpsertAsync(Vendor vendor);
+    }
+
+    public class VendorService : IVendorService
+    {
+        private ILogger<VendorService> log;
+        private Dictionary<VendorType, IDetailedVendorService> services;
+
+        public VendorService(ILogger<VendorService> log, IEnumerable<IDetailedVendorService> services)
+        {
+            this.log = log;
+            this.services = services.ToDictionary(x => x.GetVendorType());
+        }
+
+        public async Task<IEnumerable<Vendor>> GetAsync(GetVendorRequest request)
+        {
+            if (services.ContainsKey(request.VendorType))
+            {
+                if (string.IsNullOrWhiteSpace(request.Id))
+                {
+                    return await services[request.VendorType].GetAsync();
+                }
+                else
+                {
+                    var vendors = new List<Vendor>();
+                    var vendor = await services[request.VendorType].GetAsync(request.Id);
+                    if (vendor != null)
+                    {
+                        vendors.Add(vendor);
+                    }
+
+                    return vendors;
+                }
+            }
+            else
+            {
+                return new List<Vendor>();
+            }
+        }
+
+        public async Task<UpsertModelResponse<Vendor>> UpsertAsync(Vendor vendor)
+        {
+            return await services[vendor.VendorType].UpsertAsync(vendor);
+        }
     }
 
     public class FakeVendorService : IVendorService
@@ -60,6 +112,7 @@ namespace STAR.JustLendAdmin.Web.Services
 
     public class GetVendorRequest
     {
-        public VendorType? VendorType { get; set; }
+        public VendorType VendorType { get; set; } = VendorType.FourFiveZeroSix;
+        public string? Id { get; set; }
     }
 }

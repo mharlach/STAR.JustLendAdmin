@@ -22,9 +22,9 @@ namespace STAR.JustLendAdmin.Web.Models
         public bool RequiresTitle { get; set; }
         public Pricing Price4506 { get; set; } = new Pricing();
         public CompanySigningPrices SigningPrices { get; set; } = new CompanySigningPrices();
-        public CompanySigningPrices FloodPrices { get; set; } = new CompanySigningPrices();
-        public CompanySigningPrices ApprasialPrices { get; set; } = new CompanySigningPrices();
-        public CompanySigningPrices TitlePrices { get; set; } = new CompanySigningPrices();
+        public Pricing FloodPrices { get; set; } = new Pricing();
+        public Pricing ApprasialPrices { get; set; } = new Pricing();
+        public Pricing TitlePrices { get; set; } = new Pricing();
 
     }
 

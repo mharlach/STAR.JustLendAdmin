@@ -3,6 +3,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using STAR.JustLendAdmin.Web.Models;
 using STAR.JustLendAdmin.Web.Services;
 using System;
@@ -42,13 +43,18 @@ namespace STAR.JustLendAdmin.Web.Controllers
         {
             try
             {
+                log.LogInformation($"New user creation requested [{viewModel.User.Email}]");
+
                 var response = await userService.UpsertAsync(viewModel.User);
                 if (response.Success)
                 {
+                    log.LogInformation($"New user created [{response.Model.Id} - {viewModel.User.Email}]");
+
                     return RedirectToAction(nameof(Index));
                 }
                 else
                 {
+                    log.LogWarning($"New user could not be created [{viewModel.User.Email}]");
                     viewModel.User = response.Model;
                     viewModel.Response = new ResponseCore { Message = response.Message, Success = response.Success };
                     return View(viewModel);
@@ -56,7 +62,7 @@ namespace STAR.JustLendAdmin.Web.Controllers
             }
             catch (Exception ex)
             {
-                log.LogError(ex, "Error creating user");
+                log.LogError(ex, $"Error creating user [{JsonConvert.SerializeObject(viewModel.User)}]");
                 return View("Error", ex);
             }
         }
@@ -89,13 +95,16 @@ namespace STAR.JustLendAdmin.Web.Controllers
         {
             try
             {
+                log.LogInformation($"User edit requested [{viewModel.User.Id}]");
                 var response = await userService.UpsertAsync(viewModel.User);
                 if (response.Success)
                 {
+                    log.LogInformation($"User edit completed [{viewModel.User.Id}]");
                     return RedirectToAction(nameof(Index));
                 }
                 else
                 {
+                    log.LogWarning($"User edit could not be completed [{viewModel.User.Id}]");
                     viewModel.User = response.Model;
                     viewModel.Response = new ResponseCore { Message = response.Message, Success = response.Success } ;
                     return View(viewModel);
@@ -103,7 +112,7 @@ namespace STAR.JustLendAdmin.Web.Controllers
             }
             catch (Exception ex)
             {
-                log.LogError(ex, "Error editing user");
+                log.LogError(ex, $"Error editing user [{JsonConvert.SerializeObject(viewModel.User)}]");
                 return View("Error", ex);
             }
         }

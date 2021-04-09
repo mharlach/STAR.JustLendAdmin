@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using STAR.JustLendAdmin.Web.Models;
 using STAR.JustLendAdmin.Web.Services;
 using System;
@@ -40,13 +41,16 @@ namespace STAR.JustLendAdmin.Web.Controllers
         {
             try
             {
+                log.LogInformation($"New vendor creation requested [{viewModel.Vendor.General.Name}]");
                 var response = await service.UpsertAsync(viewModel.Vendor);
                 if (response.Success)
                 {
+                    log.LogInformation($"New vendor created [{response.Model.Id}] - [{response.Model.General.Name}]");
                     return RedirectToAction(nameof(Index));
                 }
                 else
                 {
+                    log.LogWarning($"New vendor could not be created [{viewModel.Vendor.General.Name}]");
                     viewModel.Vendor = response.Model;
                     viewModel.Response  = new ResponseCore { Message = response.Message, Success = response.Success };
                     return View(viewModel);
@@ -54,7 +58,7 @@ namespace STAR.JustLendAdmin.Web.Controllers
             }
             catch(Exception ex)
             {
-                log.LogError(ex, "Error creating vendor");
+                log.LogError(ex, $"Error creating vendor [{JsonConvert.SerializeObject(viewModel.Vendor)}]");
                 return View("Error", ex);
             }
         }
@@ -88,13 +92,16 @@ namespace STAR.JustLendAdmin.Web.Controllers
         {
             try
             {
+                log.LogInformation($"Vendor edit requested [{viewModel.Vendor.Id}]");
                 var response = await service.UpsertAsync(viewModel.Vendor);
                 if (response.Success)
                 {
+                    log.LogInformation($"Vendor edit completed [{viewModel.Vendor.Id}]");
                     return RedirectToAction(nameof(Index));
                 }
                 else
                 {
+                    log.LogWarning($"Vendor edit could not be completed [{viewModel.Vendor.Id }]");
                     viewModel.Vendor = response.Model;
                     viewModel.Response  = new ResponseCore { Message = response.Message, Success = response.Success };
                     return View(viewModel);
@@ -102,7 +109,7 @@ namespace STAR.JustLendAdmin.Web.Controllers
             }
             catch (Exception ex)
             {
-                log.LogError(ex, "Error editing vendor");
+                log.LogError(ex, $"Error editing vendor [{JsonConvert.SerializeObject(viewModel.Vendor)}]");
                 return View("Error", ex);
             }
         }

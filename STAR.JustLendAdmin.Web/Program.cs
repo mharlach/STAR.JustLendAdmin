@@ -35,6 +35,7 @@ namespace STAR.JustLendAdmin.Web
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureCooperLogging("STAR.JustLendAdmin.Web")
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

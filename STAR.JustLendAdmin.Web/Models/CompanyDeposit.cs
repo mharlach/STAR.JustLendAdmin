@@ -11,7 +11,7 @@ namespace STAR.JustLendAdmin.Web.Models
 
         [Range(0, double.MaxValue, ErrorMessage = "Only positive numbers allowed")]
         [DataType(DataType.Currency)]
-        public float Amount { get; set; }
+        public decimal Amount { get; set; }
     }
 
 }
